@@ -1,0 +1,13 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31375
+functions:
+  daily-status:
+    lang: node10-express-armhf
+    handler: ./daily-status
+    image: rgulden7/daily-status:latest
+    secrets:
+    - redis-password
+    labels:
+      com.openfaas.scale.min: 1
