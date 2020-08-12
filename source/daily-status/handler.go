@@ -1,6 +1,7 @@
-package funcs
+package function
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -14,6 +15,7 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	response, err := c.Do("AUTH", secret)
 	if err != nil {
 		log.Fatal(err)
@@ -24,8 +26,9 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	w.Write([]byte(dailyStatus))
+	str, _ := json.Marshal(dailyStatus)
 
+	w.Write(string(str))
 }
 
 func getDBSecret(secretName string) (secretBytes []byte, err error) {
