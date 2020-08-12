@@ -21,7 +21,7 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	dailyStatus, err := redis.StringMap(client.Do("HGETALL", "daily_status"))
+	dailyStatus, err := redis.StringMap(c.Do("HGETALL", "daily_status"))
 	if err != nil {
 		log.Fatal(err)
 	}
