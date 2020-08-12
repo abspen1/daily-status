@@ -28,7 +28,7 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 
 	str, _ := json.Marshal(dailyStatus)
 
-	w.Write(string(str))
+	w.Write(str)
 }
 
 func getDBSecret(secretName string) (secretBytes []byte, err error) {
